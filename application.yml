@@ -44,7 +44,6 @@ resilience4j:
           - feign.FeignException$NotFound
           - io.github.resilience4j.circuitbreaker.CallNotPermittedException
   bulkhead:
-    bulkheadAspectOrder: 0
     configs:
       default:
         maxConcurrentCalls: 2
