@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: producto-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+mensaje:
+  texto: Configuración obtenida desde Config Server para Producto Service
+resilience4j:
+  circuitbreaker:
+    instances:
+      categoriaService:
+        baseConfig: default
+  retry:
+    instances:
+      categoriaRetry:
+        baseConfig: default
+  bulkhead:
+    instances:
+      categoriaBulkhead:
+        baseConfig: default

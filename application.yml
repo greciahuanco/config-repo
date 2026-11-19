@@ -1,0 +1,51 @@
+spring:
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: America/Lima
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 2000
+            readTimeout: 12000
+          cliente-service:
+            readTimeout: 2000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,circuitbreakers,circuitbreakerevents,retries,retryevents,bulkheads,bulkheadevents
+resilience4j:
+  circuitbreaker:
+    circuitBreakerAspectOrder: 1
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+        eventConsumerBufferSize: 100
+        ignoreExceptions:
+          - feign.FeignException$NotFound
+  retry:
+    retryAspectOrder: 2
+    configs:
+      default:
+        maxAttempts: 3
+        waitDuration: 2s
+        eventConsumerBufferSize: 100
+        ignoreExceptions:
+          - feign.FeignException$NotFound
+          - io.github.resilience4j.circuitbreaker.CallNotPermittedException
+  bulkhead:
+    bulkheadAspectOrder: 0
+    configs:
+      default:
+        maxConcurrentCalls: 2
+        maxWaitDuration: 1s

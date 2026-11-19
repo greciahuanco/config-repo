@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: cliente-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+mensaje:
+  texto: Configuración obtenida desde Config Server para Cliente Service
+resilience4j:
+  circuitbreaker:
+    instances:
+      pedidoService:
+        baseConfig: default

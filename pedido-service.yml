@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: pedido-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+mensaje:
+  texto: Configuración obtenida desde Config Server para Pedido Service
+resilience4j:
+  circuitbreaker:
+    instances:
+      clienteService:
+        baseConfig: default
+      productoService:
+        baseConfig: default
+  retry:
+    instances:
+      clienteRetry:
+        baseConfig: default
+  bulkhead:
+    instances:
+      productoBulkhead:
+        baseConfig: default
