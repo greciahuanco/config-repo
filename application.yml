@@ -26,7 +26,6 @@ spring:
             readTimeout: 12000
           cliente-service:
             readTimeout: 2000
-management:
 resilience4j:
   circuitbreaker:
     circuitBreakerAspectOrder: 1
