@@ -1,3 +1,15 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  prometheus:
+    metrics:
+      export:
+        enabled: true
 spring:
   jpa:
     open-in-view: false
@@ -44,10 +56,3 @@ resilience4j:
       default:
         maxConcurrentCalls: 2
         maxWaitDuration: 1s
-  endpoint:
-    health:
-      show-details: always
-  prometheus:
-    metrics:
-      export:
-        enabled: true
